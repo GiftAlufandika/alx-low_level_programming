@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 /**
  * main - Entry point
  *
@@ -6,21 +6,32 @@
  */
 int main(void)
 {
-	int n1, n2;
+	int x1;
+	int x2;
+	int y1;
+	int y2;
 
-	for (n1 = 0; n2 <= 98; n2++)
+	for (x1 = 0; x1 < 10; ++x1)
 	{
-		for (n2 = n1 + 1; n2 <= 99; n2++)
+		for (x2 = 0; x2 < 10; ++x2)
 		{
-			putchar((n1 / 10) + '0');
-			putchar((n1 % 10) + '0');
-			putchar(' ');
-			putchar((n2 / 10) + '0');
-			putchar((n2 % 10) + '0');
-			if (n1 == 98 && n2 == 99)
-				continue;
-			putchar(',');
-			putchar(' ');
+			for (y1 = x1; y1 < 10; ++y1)
+			{
+				for (y2 = ((x1 == y1) ? (x2 + 1) : 0); y2 < 10; ++y2)
+				{
+					putchar('0' + x1);
+					putchar('0' + x2);
+					putchar(' ');
+					putchar('0' + y1);
+					putchar('0' + y2);
+
+					if (x1 != 9 || x2 != 8 || y1 != 9 || y2 != 9)
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+			}
 		}
 	}
 	putchar('\n');
