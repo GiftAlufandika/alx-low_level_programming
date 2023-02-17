@@ -1,8 +1,8 @@
 #include <stdio.h>
 /**
- * main -prints all the possible combinations
+ * main - Entry point
  *
- * Return - Always 0.
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
@@ -19,8 +19,7 @@ int main(void)
 				putchar((num3 % 10) + '0');
 
 				if (num1 == 7 && num2 == 8 && num3 == 9)
-					continue;
-				
+					continue;				
 				putchar(',');
 				putchar(' ');
 			}
