@@ -1,3 +1,4 @@
+/*Include main header file*/
 #include "main.h"
 /**
  * Main  - Entry point
@@ -5,7 +6,6 @@
  * Return - A;lways 0
  *
  */
-
 int main(void)
 {
 	char *text = "_putchar";
