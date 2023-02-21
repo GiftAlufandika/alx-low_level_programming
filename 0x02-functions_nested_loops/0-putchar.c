@@ -4,7 +4,6 @@
  * Main  - Entry point
  *
  * Return - A;lways 0
- *
  */
 int main(void)
 {
