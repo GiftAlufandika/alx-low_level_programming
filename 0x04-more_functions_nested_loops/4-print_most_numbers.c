@@ -3,20 +3,18 @@
  * print_most_numbers -  checks for checks for a digit (0 through 9).
  *
  * Return: Always 0.
+ *
  */
 void print_most_numbers(void)
 {
-	int a;
+	int number;
 
-	for (a = 0; a <= 9; a++)
+	for (number = '0'; number <= '9'; number++)
 	{
-		if (a != 2)
-		{
-			if (a != 4)
-			{
-			_putchar(a);
-			}
-		}
+		if (number == '2' || number == '4')
+			;
+		else
+			_putchar(number);
 	}
 	_putchar('\n');
-}i
+}
