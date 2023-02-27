@@ -8,8 +8,8 @@
   */
 char *rev_string(char *s)
 {
-       	char ch, *p, *q;
-       
+	char ch, *p, *q;
+
 	for (q = s; *q != '\0'; ++q)
 		;
 	if (q > s)
@@ -20,5 +20,5 @@ char *rev_string(char *s)
 		*p = *q;
 		*q = ch;
 	}
-	return s;
+	return (s);
 }
