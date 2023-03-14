@@ -9,6 +9,7 @@ char **strtow(char *str)
 	int i = 0, j = 0, k = 0;
 	int len = 0, count = 0;
 	char **f, *col;
+
 	if (!str || !*str)
 	{
 		return (NULL);
@@ -43,15 +44,12 @@ char **strtow(char *str)
 			str++;
 		}
 		len = 0;
-
 		while (*(str + len) != ' ' && *(str + len))
 		{
 			len += 1;
 		}
 		len += 1;
-
 		col = malloc(sizeof(char) * len);
-
 		if (!col)
 		{
 			for (k = j - 1; k >= 0; k--)
