@@ -1,101 +1,87 @@
-#include "main.h"
+#include "holberton.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- *strtow - splits a stirng into words
- *@str: string to be splitted
+ * number - function to calculate number of words
+ * @str: string being passed to check for words
  *
- *Return: pointer to the array of splitted words
+ * Return: number of words
  */
-
-char **strtow(char *str)
+int number(char *str)
 {
-	char **split;
-	int i, j = 0, temp = 0, size = 0, words = num_words(str);
-	
-	if (words == 0)
-		return (NULL);
-	split = (char **) malloc(sizeof(char *) * (words + 1));
-	if (split != NULL)
+	int a, num = 0;
+
+	for (a = 0; str[a] != '\0'; a++)
 	{
-		for (i = 0; i <= len(str) && words; i++)
+		if (*str == ' ')
+			str++;
+		else
 		{
-			if ((str[i] != ' ') && (str[i] != '\0'))
-				size++;
-			else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
-			{
-				split[j] = (char *) malloc(sizeof(char) * size + 1);
-				if (split[j] != NULL)
-				{
-					while (temp < size)
-					{
-						split[j][temp] = str[(i - size) +temp];
-						temp++;
-					}
-					split[j][temp] = '\0';
-					size = temp = 0;
-					j++;
-				}
-				else
-				{
-					while (j-- >= 0)
-						free(split[j]);
-					free(split);
-					return (NULL);
-				}
-			}
+			for (; str[a] != ' ' && str[a] != '\0'; a++)
+				str++;
+			num++;
 		}
-		split[words] = NULL;
-		return (split);
 	}
-	else
-		return (NULL);
+	return (num);
+}
+/**
+ * free_everything - frees the memory
+ * @string: pointer values being passed for freeing
+ * @i: counter
+ */
+void free_everything(char **string, int i)
+{
+	for (; i > 0;)
+		free(string[--i]);
+	free(string);
 }
 
 /**
- * num_words - counts the number of words in str
- *@str: string to be used
- *
- *Return: number of words
+ * strtow - function that splits string into words
+ * @str: string being passed
+ * Return: null if string is empty or null or function fails
  */
-int num_words(char *str)
+char **strtow(char *str)
 {
-	int i = 0, words = 0;
-	
-	while (i <= len(str))
+	int total_words = 0, b = 0, c = 0, length = 0;
+	char **words, *found_word;
+
+	if (str == 0 || *str == 0)
+		return (NULL);
+	total_words = number(str);
+	if (total_words == 0)
+		return (NULL);
+	words = malloc((total_words + 1) * sizeof(char *));
+	if (words == 0)
+		return (NULL);
+	for (; *str != '\0' &&  b < total_words;)
 	{
-		if ((str[i] != ' ') && (str[i] != '\0'))
-		{
-			i++;
-		}
-		else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
-		{
-			words += 1;
-			i++;
-		}
+		if (*str == ' ')
+			str++;
 		else
 		{
-			i++;
+			found_word = str;
+			for (; *str != ' ' && *str != '\0';)
+			{
+				length++;
+				str++;
+			}
+			words[b] = malloc((length + 1) * sizeof(char));
+			if (words[b] == 0)
+			{
+				free_everything(words, b);
+				return (NULL);
+			}
+			while (*found_word != ' ' && *found_word != '\0')
+			{
+				words[b][c] = *found_word;
+				found_word++;
+				c++;
+			}
+			words[b][c] = '\0';
+			b++; c = 0; length = 0; str++;
 		}
 	}
 	return (words);
 }
-
-/**
- * len - returns length of str
- *@str: string to be counted
- *
- * Return: length of the string
- */
-
-int len(char *str)
-{
-	int len = 0;
-	
-	if (str != NULL)
-	{
-		while (str[len])
-			len++;
-	}
-	return (len);
-}
-
