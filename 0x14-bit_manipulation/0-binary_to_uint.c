@@ -38,7 +38,5 @@ unsigned int binary_to_uint(const char *b)
 		j++;
 	}
 	while (b[j]);
-
 	return (number);
 }
-
